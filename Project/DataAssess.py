@@ -2,6 +2,7 @@ import tensorflow as tf
 import os
 import cv2
 import numpy as np
+import h5py
 from keras.datasets import cifar10
 from keras.datasets import cifar100
 
@@ -42,11 +43,13 @@ def assess_original():
 
 def assess_aug():
     # 把生成的测试数据加载到imgs数组中
-    imgs = []
-    prefix0 = "../Data/flip_ud/"
-    for i in range(start, end):
-        imgs.append(cv2.imread(prefix0 + str(i) + ".jpg"))
-    imgs = np.array(imgs)
+    # imgs = []
+    # prefix0 = "../Data/flip_ud/"
+    # for i in range(start, end):
+    #     imgs.append(cv2.imread(prefix0 + str(i) + ".jpg"))
+    # imgs = np.array(imgs)
+    imgs = h5py.File("../Data/cifar-10/flip_lr.h5", "r")
+    imgs = np.array(imgs["X_train"][:])
 
     # 进行评估
     for filename in filenames:
