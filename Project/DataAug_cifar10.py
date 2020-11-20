@@ -3,12 +3,11 @@ import cv2
 import numpy as np
 import h5py
 from keras.datasets import cifar10
-from keras.datasets import cifar100
 
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
-# (X_train, y_train), (X_test, y_test) = cifar100.load_data()
+
 start = 0
-end = 10000
+end = 1000
 
 
 # def flip_ud():
@@ -26,7 +25,6 @@ end = 10000
 
 def flip_lr():
     filename = "../Data/cifar-10/flip_lr.h5"
-    # filename = "../Data/cifar-100/flip_lr.h5"
     imgs = []
     for i in range(start, end):
         img = cv2.flip(X_train[i], 1)
@@ -39,7 +37,6 @@ def flip_lr():
 
 def rotate_r():
     filename = "../Data/cifar-10/rotate_r.h5"
-    # filename = "../Data/cifar-100/rotate_r.h5"
     imgs = []
     for i in range(start, end):
         img0 = X_train[i]
@@ -78,7 +75,6 @@ def bright():
     invGamma = 1.0 / gamma
     table = np.array([((i / 255.0) ** invGamma) * 255 for i in np.arange(0, 256)]).astype('uint8')
     filename = "../Data/cifar-10/bright.h5"
-    # filename = "../Data/cifar-100/bright.h5"
     imgs = []
     for i in range(start, end):
         img = cv2.LUT(X_train[i], table)
@@ -92,7 +88,6 @@ def bright():
 def gaussian():
     blur = 0
     filename = "../Data/cifar-10/gaussian.h5"
-    # filename = "../Data/cifar-100/gaussian.h5"
     imgs = []
     for i in range(start, end):
         img = cv2.GaussianBlur(X_train[i], (5, 5), blur)
@@ -105,7 +100,6 @@ def gaussian():
 
 def crop():
     filename = "../Data/cifar-10/crop.h5"
-    # filename = "../Data/cifar-100/crop.h5"
     imgs = []
     for i in range(start, end):
         img_padding = cv2.copyMakeBorder(X_train[i], 4, 4, 4, 4, cv2.BORDER_CONSTANT, value=0)
@@ -121,13 +115,14 @@ def crop():
 
 def mixUp():
     filename = "../Data/cifar-10/mixUp.h5"
-    # filename = "../Data/cifar-100/mixUp.h5"
     imgs = []
-    for i in range(start, end - 1):
-        img = 0.9 * X_train[i] + 0.1 * X_train[i + 1]
+    for i in range(start, end - 2):
+        img = 0.8 * X_train[i] + 0.1 * X_train[i + 1] + 0.1 * X_train[i + 2]
         imgs.append(img)
-    # 为了减少运行时间，不采用统一的取模方式，而是把最后一个单独处理
-    img = 0.9 * X_train[end - 1] + 0.1 * X_train[1]
+    # 为了减少运行时间，不采用统一的取模方式，而是把最后两个单独处理
+    img = 0.8 * X_train[end - 2] + 0.1 * X_train[end - 1] + 0.1 * X_train[1]
+    imgs.append(img)
+    img = 0.8 * X_train[end - 1] + 0.1 * X_train[1] + 0.1 * X_train[2]
     imgs.append(img)
     imgs = np.array(imgs)
     f = h5py.File(filename, "w")
