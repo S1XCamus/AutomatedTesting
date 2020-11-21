@@ -43,11 +43,11 @@ def assess_aug():
     #     imgs.append(cv2.imread(prefix0 + str(i) + ".jpg"))
     # imgs = np.array(imgs)
     # imgs = h5py.File("../Data/cifar-100/flip_lr.h5", "r")
-    # imgs = h5py.File("../Data/cifar-100/rotate_r.h5", "r")
+    imgs = h5py.File("../Data/cifar-100/rotate_r.h5", "r")
     # imgs = h5py.File("../Data/cifar-100/bright.h5", "r")
     # imgs = h5py.File("../Data/cifar-100/gaussian.h5", "r")
     # imgs = h5py.File("../Data/cifar-100/crop.h5", "r")
-    imgs = h5py.File("../Data/cifar-100/mixUp.h5", "r")
+    # imgs = h5py.File("../Data/cifar-100/mixUp.h5", "r")
     imgs = np.array(imgs["X_train"][start:end])
     imgs = imgs / 255
 

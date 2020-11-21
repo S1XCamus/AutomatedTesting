@@ -42,7 +42,7 @@ def rotate_r():
         imgInfo = img0.shape
         height = imgInfo[0]
         width = imgInfo[1]
-        matRo = cv2.getRotationMatrix2D((height * 0.5, width * 0.5), 30, 0.7)  # mat rotate 1 center 2 angle 3 缩放系数
+        matRo = cv2.getRotationMatrix2D((height * 0.5, width * 0.5), 15, 0.7)  # mat rotate 1 center 2 angle 3 缩放系数
         img = cv2.warpAffine(img0, matRo, (height, width))
         imgs.append(img)
     imgs = np.array(imgs)
@@ -130,9 +130,9 @@ def mixUp():
 
 
 if __name__ == '__main__':
-    flip_lr()
+    # flip_lr()
     rotate_r()
-    bright()
-    gaussian()
-    crop()
-    mixUp()
+    # bright()
+    # gaussian()
+    # crop()
+    # mixUp()
