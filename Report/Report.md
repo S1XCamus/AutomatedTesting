@@ -22,7 +22,7 @@
 
 + 程序流程图如下：
 
-  ![](imgs/测试数据生成-流程图.png)
+  ![](https://github.com/S1XCamus/AutomatedTesting/tree/master/Report/imgs/测试数据生成-流程图.png)
 
 ### 测试数据生成方法介绍
 
@@ -129,7 +129,7 @@
 
 + 程序流程图如下：
 
-  ![](imgs/测试数据评估-流程图.png)
+  ![](https://github.com/S1XCamus/AutomatedTesting/tree/master/Report/imgs/测试数据评估-流程图.png)
 
 ### 评估指标和分析
 
@@ -139,7 +139,7 @@
 
 记 accuracy(original) 为原始数据集的预测准确率， accuracy(x) 为用方法x生成的测试数据集的预测准确率，那么我们定义测试数据集对于模型鲁棒性的提升因子 y(x) 为：
 
-<img src="imgs/公式.png" style="zoom:150%;" />
+<img src="https://github.com/S1XCamus/AutomatedTesting/tree/master/Report/imgs/公式.png" style="zoom:150%;" />
 
 y(x)越大，说明测试数据集对于模型鲁棒性的提升越显著。
 
